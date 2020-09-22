@@ -1,0 +1,212 @@
+* vpc 만들기 : Routing 
+.....
+
+* 서브넷이 다른 경우, 어쩌고 샬라샬라
+* 별도의 라우터를 만들수도 있다 - 동일 vpc내 서로 다른 subnet의 resource간 통신 목적
+- main route tables
+- costom route tables 
+- 네트워크 트래픽 통제? 
+=> Route Table : subnet 단위 라우팅 통제 
+-> 콘솔에서 네트워크 트래픽 통제 가능
+   ex) 인터넷 구간으로부터 http, https connection 연결 가능?
+
+ * inbound network ACL?
+ - cf) outbound network ACL?
+ 
+ * VPC 확장 시나리오 
+ * VPC 확장 : internet - VPC internet Gateway 
+- Managed Service, 1:1 NAT
+
+* Internet ELP
+* Internet VPC NAT gateway
+* VPC peeing - 동일 리전내 VPC간 완전히 격리된 전용의 연결 
+
+* VPN Gateway
+	IPSec Site-to-Site VPN 을 통하여 고객사 Network과 암호화터널 구성
+
+* AWS 자원 레벨 ?
+글로벌 리소스 / 지리적인 리전/ 77개의 가용영역
+
+* aws endpoints = gateway type 
+- 인터넷을 경유하지 않고, vpc내 s3, dynamoDB를 연결
+- vpc endpoint 생성시 라우팅 정책 추가
+
+* vpx  endpoints - interface type(aws private)
+
+-> 따라서, 리저널 영역에 접근을 어쩌고, 접근 하기 위해서는 
+
+* vpc flow logs 
+- vpc, subnetm ec2 instace eni 단위로 적용 가능한 network 패킷 수집
+
+- amazon kinesis firehouse + athena + quicksight 
+
+
+* Transit Gateway
+
+* aws  directconnect 
+-> 고객 on-premise network과 vpc를 직접 연결 
+
+
+
+* 엘라스ㅌ: 로드 벨랜싱 
+
+~~~~
+
+
+
+* Route53
+: 클라우드 기반의 Scalable DNS 서비스 
+
+
+* 라우팅이란?
+- 어떤 네트워크 안에서 통신 데이터를 보낼 때, 최적의 경로를 선택하는 과정
+
+* 근데 왜 이걸 사용하는거지?
+VPC, subnet, gateway....?
+
+
+
+* 마지막 교시) IAM/WAF/Shield
+
+
+*  IAM 정책 
+- 서비스 및 리소스에 대한 사용 권한은 명시하는 정책 설정 
+- 이거는 JSON 구조 
+- 구체적으로 어떤 행위들을 하겠다는 것 
+- amazon resource name 형식으로 작성 (ARN)
+action, notaction, 주체(princpal), 리소스, condition  ..... 을 작성한다
+
+* 정책 변수 ? 
+* 정책의 종류는 정말 많다, 정말 많다. 포맷은 거의 json, xml 이런거. 
+- identity-based 정책(보안 주체에 연결할 수 있는 권한 정책)
+-  관리형 정책 과 인라인정책의 차이점은? => 재사용성의 차이점 
+- 대부분은 관리형 정책의 사용을 권장 
+
+- 고객 관리형 정책의 버저닝 및 롤팩 - 최대. 5개 버전까지 저장. 
+- Resource-based 정책  (AWS 리소스에 연결할 수 있는 권한 정책)
+* 인라인 정책만 존재 
+* 신뢰 정책 ? 
+* identity 와 Resource 의 차이점은? 리소스는 주체가 존재. 
+
+- IAM Permission Boundary 정책 
+- 권한 관리 위임 체계를 지원하고,  사용자 권한 남용 최소화하기 ....
+- 약간 필터역할? 교집합이라고 생각하면 댐.
+
+* SCP(Service Control Policy)
+* 합집합, 교집합? 
+
+--잠와! 잠와! 잠온다고! 
+
+
+* IAM policy simulator 
+* IAM Access Analyazer
+
+-----------------------------
+
+WAF - 웹 기반 공격 
+* WAF : 웹 방화벽 - http 트래픽에 대하여 특정한 규칙을 적용하기 위한 
+어플라이언스, 어쩌고 보안. 제품 
+
+- 이거 왜 쓰는거임?
+- 기존에껀 왜 문제? - 제대로 구축하기 어렵고, 시간도 많이 걸림 
+				  자동화를 위한 api도 부족
+........
+
+=> 웹 취약점으로부터 웹 어플리케이션 보호 (ex- 디도스,owasp타입공격, 악성 봇)
+
+* WAF 구성 
+- web acls, ruel  groups, ip sets, regex pattern  sets
+
+* AWS 관리형 규칙(AMR)
+: 자체 규칙을 작성하지 않고, 일반적인. 애플맄이션 취약성 또는 기타 원치 않는 트래픽에 대한 보호를 
+제공하는 AWS 관리형 서비스 - 추가 비용없이 이용 가능
+* WCU(web acl capacity units)
+
+- 관리형 규칙 목록은 많다, 정말 이것도 많음 
+- ACL하는 데 Custom 규칙있음 
+
+---------------------------
+* Shield : 디도스 공격 보호 
+- 요즘은 물량 기반 디도스 공격 많음 -> 이걸 보호해야함
+- shield는 매일매일 수천번의 ddos 공격을 탐지하고, 대응한다 
+-> "가용성에 대한 확신"!
+-> 라우터 등에서 나오는 트래픽 감지,,,, 
+
+점수 기반 트래픽 처리 순위화 하여 죽인다죽여라
+- 레이어 7 어플리케이션 방어 
+  
+--------------------------------
+
+* Security
+- AWS의 보안기능 
+* our categorize by object
+- Amazon guardduty 
+  (AWS 계정과 워크로드를 보호하기 위한 지능형 위협 감지)
+  * full-managed 
+  - management point?
+  - management poing of appliance & agent 
+  * log inspection - 로그를 분석한다는 건데..... 
+  * threat intelligence -  탐구할 수 있는 항목들은 정해져 있다. 
+
+* AWS security finding format(ASFF)
+
+- Amazon Detective 
+	* hierarchy
+	* investigate(지금까지랑 한거랑 성격이 조금 다름)
+	* visualization (이 기능은 시각화기능, detective의 좋은 점?)
+
+* our Categorize by forensic flow 
+
+* Remediation, Conclusion 
+-> 써드 파티? 이게 뭐하는 놈이여?
+
+
+
+
+-----------------
+
+
+
+
+//변경사항
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
