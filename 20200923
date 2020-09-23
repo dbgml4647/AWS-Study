@@ -1,0 +1,122 @@
+#대규모 서비스를 위한 AWS 컨테이더 도구 활용 
+
+
+* 레거시 애플리케이션 컨테이너 화?
+-> 수동 또는 사용자 지정 스크립트 기반 빌드 및 배포 프로세스
+-> 사람들 지식 부족!!!? -> 사람들 지식 부족인가?
+
+-> 응용 프로그램 이해 -> 컨테이너 빌드 -> 인프라 배포 
+
+* 애플리케이셔 컨테이너화 가속화?
+-> 장점) 최소한의 노력으로 레거시 어플리케이션을 컨테이너화....
+
+* AWS App2Container 
+: VM에서 실행되는 애플리케이션을 컨테이너로 변환하고 AWS에 배포
+
+* A2C CLI Tools 
+:Application Server VM에서 실행되는 CLI
+: Application server의 종단 간 워크 플로우 
+
+#팀장님 
+
+java - JDK - OS ok
+asp, c# asp.net - .net - 
+
+
+* VM ware 
+ex) mac= vmware - cpu, ram(hardware) - OS - app 
+
+*Docker 
+- 운영체제 다있고, 커널도 있고, 컨테이너 느낌. (Cpu할당 받아서 사용)
+
+*Docker Hub 
+- 레퍼지토리 느낌 
+- 꼭 official 이미지를 넣어야함 
+
+azure, aws, blumix,,,,,
+환경이 다 다르기 때문에, -> docker만 만들면 끝이다!
+
+* docker build
+* docker push도 가능 
+
+- docker compose up?
+- 서버에 여러 컨테이너가 올라옴. 
+
+오케스트레이션, 
+온프레미스 
+
+* kubenertes - EKS 
+* fargate -- ECS 
+
+
+레가시,,,,,
+* Puppeteer 
+* Edge? 크로미움 ? -> ui가 없는거여 
+* 팀장 님이 보여준 puppteer가 또 돌고 있음
+
+
+* 2시 ~ 
+- 자동화 -> AWS에서 해결해봐요~
+- 자동화는 크게 인프라/애플리케이션 
+
+* 배포 프로세스
+* 배포 파이프 라인 
+
+-> 이런 파이프 라인을 자동화하는 것
+* CI : 지속적 통합 
+* CD : 지속적 전달 
+* CD : 지속적 배포 
+
+- sourece control, build / 애플리케이션 코드를 이용해 작업
+- sttaging , production / 인프라 관련된 작업 
+
+-> 1. 인프라와 애플리케이션을 별도로/함께/일부분으로 배포 가능 
+   2. 배포 자동화는 컴퓨팅 유형에 따라 달라질 수 있다(ex)가상화, 컨테이너, 서버리스 ... )
+
+* AWS 배포 서비스 및 도구는 정말 매우 많다. 기억에 남는건 sam(다람쥐가 귀엽다)
+
+* 어플리케이션 코드 예제 
+- pastebin : 디자인 
+: 텍스트를 등록하여 공유하는 매우 간단한 텍스트 저장 및 공유앱 
+: 텍스트 등록, 텍스트 조회 끝 . 
+
+- AWS codepipeline 
+: 빠르고 안정적인 어플레케이션 ,,, 
+: 지원하는 소스 - 브랜치/객체 또는 폴더 / Docker 태그 
+
+- AWS CodeCommit
+: 안전한 Git 기반 저장소를 호스팅하는 관리형 소스 제어 서비스 
+
+- AWS CodeBuild 
+: 어쩌고 어쩌고 소프트 웨어 패키지 생성을 하는 관리형 빌드 서비스
+: 지속적으로 확장하고, 여러 빌드를 동시에 처리 
+
+-AWS CodeBuild: Lambda buildspec 
+-AWS CodeBuild : Docker buildspec 
+
+* AWS CloudFormation 
+: 클라우드 인프라 템플릿을 정의하기 위한 언어 
+- JSON 및 YAML지원 
+
+ex) 샘플 템플릿 코드를 ... 봐라......=> 템플릿이라는 파일에 코드 작성 
+								  템플릿을 기반으로 스택이 생성
+
+* SAM : 서버리스에 가장 최적화된 CloudFormation 확장판 
+		- SAM templates(코드형 인프라 제공(IaC))/ SAM CLI(로컬 개발, 디버깅....도구 제공)
+ex) CloudFormation 템플릿 ... 
+
+* 코드형 인프라 
+: 머신이 읽을 수 있는 정의 파일을 통한 인프라 정의 프로세스 
+-> 위험 감소, 속도 증가... 
+
+* 인프라 프로비저닝?
+: 수동 -> 스크립트 -> 선언형(CloudFormarion 여기있음) -> 생성기 -> 추상화(AWS CDK여기 있음)
+
+* CFN : 선언적 프로그래밍 
+:  YAML, JSON은 원하는 상태를 선언하는 데 사용 
+
+-> AWS Cloud Development Kit
+: 익숙한 프로그래밍 언어를 사용하여 클라우드 인프라를 정의하는 소프트웨어 개발 프레임워크 
+
+cdk init -> npm run build -> cdk synth -> cdk diff -> cdk deploy
+
