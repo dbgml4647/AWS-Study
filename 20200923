@@ -120,3 +120,44 @@ ex) CloudFormation 템플릿 ...
 
 cdk init -> npm run build -> cdk synth -> cdk diff -> cdk deploy
 
+* 배포 패턴 
+1. all-at-once
+2. blue/green 
+3. Canary/Linear
+
+*. Lambda 컷 오버 사용 
+- 우와 이거는 정말 하나도 모르겠다
+
+* ECS Blue/Green 배포에 대해서 알아보자. 
+* 클릭스트림 애플리케이션,,,,?
+
+===============================================
+
+* AWS 암호화 키 
+- Customer 마스터키, 데이터 키 
+
+- 클라이언트 측 암호화(CSE = Client-Side Encryption)
+- 서버 측 암호화 (SSE = Server-Side Encrytion)
+
+* AWS KMS(Key Management Service) 
+: 한국말로 인증 인가 로깅 
+
+* EC2/EBS 모델 - EBS 볼륨 별로 데이터 키 생성, CMK로 암호화한 뒤 메타 데이터로 저장
+
+* S3 모델 
+* 주요 비대칭키 API 알기 .....
+
+* AWS KMS의 limit .... 한번 씩 읽어보기,,,
+* AWS Encrption SDK 
+: Keyring (Master Key Provider)
+
+* KMK Deep Dive
+
+KMS의 키는 계층 구조를 가진다. 
+
+
+CMK가 KMK에 의해 생성되는 경우)
+CMK : ARN이 부여된 논리적인 키 컨테이너,,,,?
+
+==========================================
+
