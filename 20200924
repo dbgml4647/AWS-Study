@@ -1,0 +1,57 @@
+#20200924
+
+- AWS 서버리스 데이터 분석 서비스를 이용한 대시보드 만들기 
+ 
+* Defining the AWS data lake 
+- 얘네가 무엇을 제공하는가?
+: 정형 & 비정형 데이터
+: 다양한 분석 및 기계학습 도구 ... 그 외 많은 것 
+
+* Processing and querying in place 
+- 사용자 정의 함수 
+- 완전 관리형 ETL & 쿼리 
+
+-> 서버리스 어쩌고 모델 
+: 프로비저닝, 관리 없음 
+: 자동 스케일링 
+
+
+-> 여기 컨셉 - Amazon S3+AWS Glue+AWS Lambda+ AmazonCloudWatchEvents 
+
+* S3
+:데이터 lake에서 가장 좋은 공간,,,
+: 강력한 내구성, 유효성, 확장성,,,, 
+
+===================================
+* 그럼 어떤식으로 빌딩을 할까?
+1. S3로 데이터 수집 및 적재 
+2. S3 이벤트 트리거 구성 
+3. Glue crawler를 통한 카탈로그 자동 구성 
+4. ETL 작업 생성 
+5. ETL 작업 스케줄링 및 워크플로우 생성 
+6. CloudWatch 이벤트를 통한 모니터링
+
+-> 솔루션 아키텍쳐 봐라 
+
+==================================
+
+* AWS Glue 
+: 1. Data Catalog - 크롤러로 자동 메타 데이터추출및 타켓 테이블 생성
+  2. Job Authoring - ETL 코드 자동 생성 (개발자 중심 - 편집, 디버깅, 공유...)
+  3. Job Execution - 유연한 스케줄러 기능 제공 
+
+
+* AWS Glue Data Catalog : Crawlers 
+: 크롤러는 자동으로 데이터 카탈로그를 작성하고, 동기화 상태를 유지 
+
+
+* Job authoring : ETL Code 
+
+* AWS Glue Dynamic Frames 
+: semi-structed 데이터 세트를 정리하고 재 구조 
+
+* Job execution : Scheduling and monitoring
+: 이벤트 기반 대신 
+
+* Job execution : Serverless .. 
+: 서버 프로비저닝, 운영 불 필요.... 
